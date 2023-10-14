@@ -43,7 +43,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let token = option_env!("GH_RATE_LIMIT_TOKEN").map_or_else(
         || {
             if std::env::args().len() < 2 {
-                eprintln!("Usage: github_rate_checker <GitHub-Token>");
+                eprintln!("Usage: gh-rate-checker <GitHub-Token>");
                 std::process::exit(1);
             }
             std::env::args().nth(1).unwrap()
