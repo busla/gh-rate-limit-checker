@@ -11,6 +11,9 @@ repository = "https://github.com/busla/gh-rate-limit-checker"
 keywords = ["cli", "github"]
 categories = ["command-line-utilities"]
 
+[[bin]]
+name = "gh-rate-checker"
+path = "src/main.rs"
 
 [dependencies]
 reqwest = {version = "0.11.22", features = ["blocking", "json"]}

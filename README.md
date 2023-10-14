@@ -2,6 +2,15 @@
 
 Simple cli util to check the rate-limit against a PAT and output as a table.
 
+```bash
+GH_RATE_LIMIT_TOKEN=some-token gh-rate-checker
+
+# or
+
+gh-rate-checker some-token
+
+```
+
 Instead of curling and `jq` magic:
 
 ```json
