@@ -1,6 +1,6 @@
 [package]
 name = "gh-rate-checker"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 authors = ["Jón Levy <jon.levy@pm.me>"]
 license = "MIT"
