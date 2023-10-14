@@ -6,15 +6,15 @@ authors = ["Jón Levy <jon.levy@pm.me>"]
 license = "MIT"
 description = "Simple Github rate-limit checker"
 readme = "README.md"
-homepage = "https://github.com/you/grrs"
-repository = "https://github.com/you/grrs"
-keywords = ["cli", "search", "demo"]
+homepage = "https://github.com/busla/gh-rate-limit-checker"
+repository = "https://github.com/busla/gh-rate-limit-checker"
+keywords = ["cli", "github"]
 categories = ["command-line-utilities"]
 
 
 [dependencies]
-reqwest = {version = "*", features = ["blocking", "json"]}
-serde = {version = "*", features = ["derive"]}
-serde_json = "*"
-prettytable-rs = "*"
+reqwest = {version = "0.11.22", features = ["blocking", "json"]}
+serde = {version = "1.0.189", features = ["derive"]}
+serde_json = "1.0.107"
+prettytable-rs = "0.10.0"
 chrono = "0.4.31"
