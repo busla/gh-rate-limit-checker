@@ -3,12 +3,7 @@
 Simple cli util to check the rate-limit against a PAT and output as a table.
 
 ```bash
-GH_RATE_LIMIT_TOKEN=some-token gh-rate-checker
-
-# or
-
-gh-rate-checker some-token
-
+GITHUB_TOKEN=some-token cargo run gh-rate-checker
 ```
 
 Instead of curling and `jq` magic:
@@ -35,7 +30,7 @@ Instead of curling and `jq` magic:
 }
 ```
 
-We get a colorized table output (no colors in md snippets 🤷).
+We get a table output:
 
 ```console
 Resource                    | Limit | Used | Remaining | Reset

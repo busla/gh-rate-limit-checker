@@ -4,19 +4,21 @@ extern crate chrono;
 extern crate reqwest;
 extern crate serde;
 extern crate serde_json;
+
 use chrono::NaiveDateTime;
 use prettytable::{cell, color, format, Attr, Row, Table};
 use serde::Deserialize;
+use std::env;
 
 const GITHUB_RATE_URL: &str = "https://api.github.com/rate_limit";
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 struct GithubResponse {
     resources: Resources,
     rate: Rate,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 struct Resources {
     core: Rate,
     search: Rate,
@@ -31,7 +33,7 @@ struct Resources {
     code_search: Rate,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 struct Rate {
     limit: u32,
     used: u32,
@@ -40,21 +42,12 @@ struct Rate {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let token = option_env!("GH_RATE_LIMIT_TOKEN").map_or_else(
-        || {
-            if std::env::args().len() < 2 {
-                eprintln!("Usage: gh-rate-checker <GitHub-Token>");
-                std::process::exit(1);
-            }
-            std::env::args().nth(1).unwrap()
-        },
-        |token| token.to_string(),
-    );
+    let token = env::var("GITHUB_TOKEN").expect("GITHUB_TOKEN environment variable not set");
 
     let client = reqwest::blocking::Client::new();
     let response: GithubResponse = client
         .get(GITHUB_RATE_URL)
-        .bearer_auth(token)
+        .bearer_auth(&token)
         .header(reqwest::header::USER_AGENT, "github_rate_checker")
         .send()?
         .json()?;
